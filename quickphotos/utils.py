@@ -5,13 +5,13 @@ from .models import Photo
 
 def update_photos(photos):
     for i in photos:
-        thumb = i.images['thumbnail']
+        image = i.images['standard_resolution']
 
         obj, created = Photo.objects.get_or_create(photo_id=i.id, defaults={
             'user': i.user.username,
-            'thumb': thumb.url,
-            'thumb_width': thumb.width,
-            'thumb_height': thumb.height,
+            'image': image.url,
+            'image_width': image.width,
+            'image_height': image.height,
             'created': make_aware(i.created_time, utc),
             'caption': i.caption or '',
             'link': i.link,
