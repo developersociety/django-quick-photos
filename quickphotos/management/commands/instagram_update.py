@@ -21,7 +21,7 @@ def update_user(user):
             'thumb_width': thumb.width,
             'thumb_height': thumb.height,
             'created': make_aware(i.created_time, utc),
-            'caption': i.caption,
+            'caption': i.caption or '',
             'link': i.link,
         })
 

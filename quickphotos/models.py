@@ -20,7 +20,10 @@ class Photo(models.Model):
         ordering = ('-created',)
 
     def __str__(self):
-        return '%s - %s' % (self.user, truncatechars(self.caption, 50))
+        if self.caption:
+            return '%s - %s' % (self.user, truncatechars(self.caption, 50))
+        else:
+            return self.user
 
     def get_absolute_url(self):
         return self.link
