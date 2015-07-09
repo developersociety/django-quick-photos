@@ -7,7 +7,7 @@ def update_photos(photos):
     for i in photos:
         image = i.images['standard_resolution']
 
-        obj, created = Photo.objects.get_or_create(photo_id=i.id, defaults={
+        obj, created = Photo.objects.update_or_create(photo_id=i.id, defaults={
             'user': i.user.username,
             'image': image.url,
             'image_width': image.width,
