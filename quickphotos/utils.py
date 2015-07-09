@@ -4,6 +4,8 @@ from .models import Photo
 
 
 def update_photos(photos):
+    obj_list = []
+
     for i in photos:
         image = i.images['standard_resolution']
 
@@ -16,3 +18,7 @@ def update_photos(photos):
             'caption': i.caption or '',
             'link': i.link,
         })
+
+        obj_list.append(obj)
+
+    return obj_list
