@@ -17,6 +17,8 @@ def update_photos(photos):
             'created': make_aware(i.created_time, utc),
             'caption': i.caption or '',
             'link': i.link,
+            'like_count': i.like_count,
+            'comment_count': i.comment_count,
         })
 
         obj_list.append(obj)

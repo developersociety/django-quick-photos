@@ -15,6 +15,8 @@ class Photo(models.Model):
     created = models.DateTimeField(db_index=True)
     caption = models.TextField()
     link = models.URLField()
+    like_count = models.PositiveIntegerField(default=0)
+    comment_count = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = ('-created',)
