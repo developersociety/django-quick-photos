@@ -1,4 +1,5 @@
 from django import template
+
 from quickphotos.models import Photo
 
 register = template.Library()

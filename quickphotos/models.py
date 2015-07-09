@@ -1,7 +1,11 @@
+from __future__ import unicode_literals
+
 from django.db import models
 from django.template.defaultfilters import truncatechars
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class Photo(models.Model):
     photo_id = models.CharField(max_length=100, unique=True)
     user = models.CharField(max_length=30, db_index=True)
@@ -15,8 +19,8 @@ class Photo(models.Model):
     class Meta:
         ordering = ('-created',)
 
-    def __unicode__(self):
-        return u'%s - %s' % (self.user, truncatechars(self.caption, 50))
+    def __str__(self):
+        return '%s - %s' % (self.user, truncatechars(self.caption, 50))
 
     def get_absolute_url(self):
         return self.link

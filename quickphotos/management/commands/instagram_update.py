@@ -1,12 +1,15 @@
-from django.core.management.base import BaseCommand
 from django.conf import settings
+from django.core.management.base import BaseCommand
 from django.utils.timezone import make_aware, utc
 from instagram.client import InstagramAPI
+
 from quickphotos.models import Photo
 
 
 def update_user(user):
-    api = InstagramAPI(access_token=settings.INSTAGRAM_ACCESS_TOKEN)
+    api = InstagramAPI(
+        access_token=settings.INSTAGRAM_ACCESS_TOKEN,
+        client_secret=settings.INSTAGRAM_CLIENT_SECRET)
     recent_media, next = api.user_recent_media(user_id=user)
 
     for i in recent_media:
