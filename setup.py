@@ -11,8 +11,8 @@ setup(
     description='Latest Photos from Instagram for Django',
     long_description=open('README.rst').read(),
     url='https://github.com/blancltd/django-quick-photos',
-    maintainer='Alex Tomkins',
-    maintainer_email='alex@blanc.ltd.uk',
+    maintainer='Blanc Ltd',
+    maintainer_email='studio@blanc.ltd.uk',
     platforms=['any'],
     install_requires=[
         'python-instagram>=0.8.0',
