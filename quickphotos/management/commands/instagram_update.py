@@ -19,5 +19,4 @@ class Command(BaseCommand):
     args = 'user [user ...]'
 
     def handle(self, *args, **options):
-        for i in args:
-            update_users(users=args)
+        update_users(users=args)
