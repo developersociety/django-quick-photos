@@ -1,5 +1,12 @@
 #!/usr/bin/env python
+from codecs import open
+
 from setuptools import find_packages, setup
+
+
+with open('README.rst', 'r', 'utf-8') as f:
+    readme = f.read()
+
 
 # Use quickphotos.VERSION for version numbers
 version_tuple = __import__('quickphotos').VERSION
@@ -9,7 +16,7 @@ setup(
     name='django-quick-photos',
     version=version,
     description='Latest Photos from Instagram for Django',
-    long_description=open('README.rst').read(),
+    long_description=readme,
     url='https://github.com/blancltd/django-quick-photos',
     maintainer='Blanc Ltd',
     maintainer_email='studio@blanc.ltd.uk',
