@@ -6,10 +6,10 @@ register = template.Library()
 
 
 @register.assignment_tag
-def get_latest_photos(user, amount=None):
+def get_latest_photos(user, limit=None):
     photos = Photo.objects.filter(user=user)
 
-    if amount is not None:
-        photos = photos[:amount]
+    if limit is not None:
+        photos = photos[:limit]
 
     return photos
