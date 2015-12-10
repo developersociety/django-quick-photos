@@ -8,13 +8,9 @@ with open('README.rst', 'r', 'utf-8') as f:
     readme = f.read()
 
 
-# Use quickphotos.VERSION for version numbers
-version_tuple = __import__('quickphotos').VERSION
-version = '.'.join([str(v) for v in version_tuple])
-
 setup(
     name='django-quick-photos',
-    version=version,
+    version='0.2',
     description='Latest Photos from Instagram for Django',
     long_description=readme,
     url='https://github.com/blancltd/django-quick-photos',
