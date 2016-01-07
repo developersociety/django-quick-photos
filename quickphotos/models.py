@@ -6,6 +6,20 @@ from django.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible
+class Tag(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+
+    class Meta:
+        ordering = ('name',)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return 'https://www.instagram.com/explore/tags/%s/' % (self.name,)
+
+
+@python_2_unicode_compatible
 class Photo(models.Model):
     photo_id = models.CharField(max_length=100, unique=True)
     user = models.CharField(max_length=30, db_index=True)
@@ -15,6 +29,7 @@ class Photo(models.Model):
     image_file = models.ImageField(upload_to='quickphotos/photo', blank=True)
     created = models.DateTimeField(db_index=True)
     caption = models.TextField()
+    tags = models.ManyToManyField(Tag, blank=True)
     link = models.URLField()
     like_count = models.PositiveIntegerField(default=0)
     comment_count = models.PositiveIntegerField(default=0)

@@ -9,7 +9,8 @@ class PhotoAdmin(admin.ModelAdmin):
     list_filter = ('created',)
     date_hierarchy = 'created'
     readonly_fields = (
-        'photo_id', 'user', 'image', 'created', 'caption', 'link', 'like_count', 'comment_count')
+        'photo_id', 'user', 'image', 'created', 'caption', 'tags', 'link', 'like_count',
+        'comment_count')
     fieldsets = (
         (None, {
             'fields': readonly_fields,

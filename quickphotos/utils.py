@@ -7,7 +7,20 @@ from django.utils.timezone import make_aware, utc
 from PIL import Image
 import requests
 
-from .models import Photo
+from .models import Photo, Tag
+
+
+def photo_tags(obj, tags):
+    for tag in tags:
+        name = tag.name.lower()
+
+        # No sane limit on tags - so we enforce one here by avoiding them
+        if len(name) > 200:
+            continue
+
+        tag_obj, created = Tag.objects.get_or_create(name=name)
+
+        obj.tags.add(tag_obj)
 
 
 @transaction.atomic
@@ -54,6 +67,9 @@ def update_photos(photos, download=False):
                 # Save the file
                 image_file.seek(0)
                 obj.image_file.save(image_name, image_file, save=True)
+
+        # Add tags
+        photo_tags(obj=obj, tags=i.tags)
 
         obj_list.append(obj)
 
