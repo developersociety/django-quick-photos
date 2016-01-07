@@ -17,13 +17,18 @@ def update_photos(photos, download=False):
     for i in photos:
         image = i.images['standard_resolution']
 
+        if i.caption:
+            caption = i.caption.text
+        else:
+            caption = ''
+
         obj, created = Photo.objects.update_or_create(photo_id=i.id, defaults={
             'user': i.user.username,
             'image': image.url,
             'image_width': image.width,
             'image_height': image.height,
             'created': make_aware(i.created_time, utc),
-            'caption': i.caption or '',
+            'caption': caption,
             'link': i.link,
             'like_count': i.like_count,
             'comment_count': i.comment_count,
