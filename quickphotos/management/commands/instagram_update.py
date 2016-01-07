@@ -16,10 +16,15 @@ def update_users(users, download):
 
 
 class Command(BaseCommand):
-    args = 'user [user ...]'
+    help = 'Download and store the latest photos of followed users'
 
     def add_arguments(self, parser):
-        parser.add_argument('--download-photos', action='store_true')
+        parser.add_argument(
+            'users', metavar='user', nargs='+',
+            help='Instagram user ID to update')
+        parser.add_argument(
+            '--download-photos', action='store_true',
+            help='Download images from photos and store locally')
 
-    def handle(self, *args, **options):
-        update_users(users=args, download=options['download_photos'])
+    def handle(self, **options):
+        update_users(users=options['users'], download=options['download_photos'])

@@ -28,5 +28,7 @@ def get_auth_tokens(stdout):
 
 
 class Command(BaseCommand):
-    def handle(self, *args, **options):
+    help = 'Generate access token needed for Instagram'
+
+    def handle(self, **options):
         get_auth_tokens(self.stdout)
