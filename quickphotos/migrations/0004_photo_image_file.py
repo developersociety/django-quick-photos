@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='photo',
             name='image_file',
-            field=models.FileField(upload_to='quickphotos/photo', blank=True),
+            field=models.ImageField(upload_to='quickphotos/photo', blank=True),
         ),
     ]

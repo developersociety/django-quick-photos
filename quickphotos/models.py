@@ -12,7 +12,7 @@ class Photo(models.Model):
     image = models.URLField()
     image_width = models.PositiveIntegerField()
     image_height = models.PositiveIntegerField()
-    image_file = models.FileField(upload_to='quickphotos/photo', blank=True)
+    image_file = models.ImageField(upload_to='quickphotos/photo', blank=True)
     created = models.DateTimeField(db_index=True)
     caption = models.TextField()
     link = models.URLField()
