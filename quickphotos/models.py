@@ -45,3 +45,18 @@ class Photo(models.Model):
 
     def get_absolute_url(self):
         return self.link
+
+
+@python_2_unicode_compatible
+class Like(models.Model):
+    user = models.CharField(max_length=30, db_index=True)
+    photo = models.ForeignKey(Photo)
+
+    class Meta:
+        ordering = ('-photo',)
+        unique_together = (
+            ('user', 'photo'),
+        )
+
+    def __str__(self):
+        return '%s' % (self.photo,)

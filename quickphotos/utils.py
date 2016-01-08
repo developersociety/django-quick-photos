@@ -2,12 +2,11 @@ import hashlib
 from tempfile import TemporaryFile
 
 from django.core.files import File
-from django.db import transaction
 from django.utils.timezone import make_aware, utc
 from PIL import Image
 import requests
 
-from .models import Photo, Tag
+from .models import Like, Photo, Tag
 
 
 def photo_tags(obj, tags):
@@ -23,7 +22,6 @@ def photo_tags(obj, tags):
         obj.tags.add(tag_obj)
 
 
-@transaction.atomic
 def update_photos(photos, download=False):
     obj_list = []
 
@@ -72,5 +70,14 @@ def update_photos(photos, download=False):
         photo_tags(obj=obj, tags=i.tags)
 
         obj_list.append(obj)
+
+    return obj_list
+
+
+def update_likes(user, photos, download=False):
+    obj_list = update_photos(photos=photos, download=download)
+
+    for photo in obj_list:
+        Like.objects.get_or_create(user=user, photo=photo)
 
     return obj_list
