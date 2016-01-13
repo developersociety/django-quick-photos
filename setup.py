@@ -10,7 +10,7 @@ with open('README.rst', 'r', 'utf-8') as f:
 
 setup(
     name='django-quick-photos',
-    version='0.2',
+    version='0.2.1',
     description='Latest Photos from Instagram for Django',
     long_description=readme,
     url='https://github.com/blancltd/django-quick-photos',
